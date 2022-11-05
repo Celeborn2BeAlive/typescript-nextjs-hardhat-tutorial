@@ -19,6 +19,11 @@ jobs:
           node-version: "^16.10.0"
           check-latest: true
 
+      steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.13.2
+
       - name: Install Npm Dependencies
         run: pnpm install
 

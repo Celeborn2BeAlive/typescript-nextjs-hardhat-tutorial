@@ -1,0 +1,48 @@
+.pnpm:
+  image: node:16
+  before_script:
+    - npm install -g pnpm
+    - pnpm install
+  cache:
+    paths:
+      - node_modules/
+
+stages:
+  - qa
+  - build
+  - deploy
+
+eslint-job:
+  extends: .pnpm
+  stage: qa
+  script:
+    - pnpm run lint
+
+test-job:
+  extends: .pnpm
+  stage: qa
+  script:
+    - pnpm run test:ci
+
+build:
+  extends: .pnpm
+  stage: build
+  script:
+    - mv gitlab-pages.next.config.js next.config.js
+    - pnpm run build
+  artifacts:
+    paths:
+      - out
+
+pages:
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - mv out public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+  when: manual

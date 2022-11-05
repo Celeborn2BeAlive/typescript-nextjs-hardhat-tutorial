@@ -1,0 +1,6 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "jest.jestCommandLine": "pnpm exec jest",
+  "liveServer.settings.root": "/out"
+}

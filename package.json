@@ -10,7 +10,7 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "cypress:open": "cypress open",
-    "cypress:verify": "cypress open"
+    "cypress:verify": "cypress verify"
   },
   "dependencies": {
     "@types/node": "18.11.9",
